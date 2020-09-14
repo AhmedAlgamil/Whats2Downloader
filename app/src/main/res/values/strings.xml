@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Whats Status Downloader</string>
+    <string name="whatsapp_saver">whats downloader</string>
+    <string name="download_more_from_link">download more from link</string>
+    <string name="whatsapp_not_installed">whats not installed</string>
+    <string name="error_server">Error</string>
+    <string name="try_again">try again</string>
+    <string name="save_successful_message">download successful</string>
+    <string name="save_error_message">downlaod faild</string>
+    <string name="permission_title">allow permission</string>
+    <string name="permission_desc">you should allow these permissions to make app work</string>
+    <string name="banner_ads">ca-app-pub-8962554532072805/3632148395</string>
+    <string name="banner_ads2">ca-app-pub-8962554532072805~9189271995</string>
+    <string name="about">About</string>
+</resources>

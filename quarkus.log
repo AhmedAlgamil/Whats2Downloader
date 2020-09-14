@@ -1,0 +1,549 @@
+
+[t=1595795272439] LSP4E to quarkus:
+Content-Length: 1407
+
+
+[t=1595795272487] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"1","method":"initialize","params":{"processId":1768,"rootPath":"/C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/","rootUri":"file:/C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/","capabilities":{"workspace":{"applyEdit":true,"workspaceEdit":{"documentChanges":true,"resourceOperations":["create","delete","rename"],"failureHandling":"undo"},"symbol":{"dynamicRegistration":true},"executeCommand":{"dynamicRegistration":true},"workspaceFolders":true},"textDocument":{"synchronization":{"willSave":true,"willSaveWaitUntil":true,"didSave":true},"completion":{"completionItem":{"snippetSupport":true,"documentationFormat":["markdown","plaintext"]}},"hover":{"contentFormat":["markdown","plaintext"]},"signatureHelp":{},"references":{},"documentHighlight":{},"documentSymbol":{"symbolKind":{"valueSet":[18,17,5,14,9,10,22,24,8,1,12,11,20,6,2,3,21,16,19,25,4,7,15,23,26,13]},"hierarchicalDocumentSymbolSupport":true},"formatting":{"dynamicRegistration":true},"rangeFormatting":{},"definition":{"linkSupport":true},"typeDefinition":{"linkSupport":true},"codeAction":{"codeActionLiteralSupport":{"codeActionKind":{"valueSet":["quickfix","refactor","refactor.extract","refactor.inline","refactor.rewrite","source","source.organizeImports"]}},"dynamicRegistration":true},"codeLens":{},"documentLink":{},"colorProvider":{},"rename":{}}},"clientName":"IntelliJ","trace":"off"}}
+[t=1595795278510] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"1","result":{"capabilities":{"textDocumentSync":2,"hoverProvider":true,"completionProvider":{"resolveProvider":false,"triggerCharacters":[".","%","\u003d","@"]},"definitionProvider":true,"documentSymbolProvider":true,"codeLensProvider":{"resolveProvider":false},"documentFormattingProvider":false,"documentRangeFormattingProvider":true}}}
+[t=1595795278534] LSP4E to quarkus:
+Content-Length: 52
+
+
+[t=1595795278549] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"initialized","params":{}}
+[t=1595795278565] LSP4E to quarkus:
+Content-Length: 371
+
+
+[t=1595795278570] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"1","method":"client/registerCapability","params":{"registrations":[{"id":"a5381de2-8efb-46b8-b748-6104ba1d99e3","method":"textDocument/codeAction"}]}}
+[t=1595795278572] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"2","method":"client/registerCapability","params":{"registrations":[{"id":"63c58386-90b4-408b-8071-13f6fec890dd","method":"textDocument/formatting"}]}}
+[t=1595795278573] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"3","method":"client/registerCapability","params":{"registrations":[{"id":"06a57413-d25c-4383-822e-38409aa2beb7","method":"textDocument/rangeFormatting"}]}}
+[t=1595795278583] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":28,"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/adapters/RecyclerViewMediaAdapter.java"},"contentChanges":[{"range":{"start":{"line":102,"character":70},"end":{"line":103,"character":0}},"rangeLength":1,"text":""}]}}
+[t=1595795278596] LSP4E to quarkus:
+Content-Length: 8097
+
+
+[t=1595795278609] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/views/activities/FullscreenActivity.java","languageId":"quarkus","version":1,"text":"package com.algamil.whatsdownloader.views.activities;\n\nimport android.net.Uri;\nimport android.os.Bundle;\nimport android.util.Log;\nimport android.view.View;\nimport android.view.Window;\nimport android.view.WindowManager;\nimport android.widget.ImageView;\nimport android.widget.RelativeLayout;\n\nimport androidx.appcompat.app.AppCompatActivity;\nimport androidx.core.content.FileProvider;\n\nimport com.algamil.whatsdownloader.R;\nimport com.google.android.exoplayer2.ExoPlaybackException;\nimport com.google.android.exoplayer2.ExoPlayer;\nimport com.google.android.exoplayer2.ExoPlayerFactory;\nimport com.google.android.exoplayer2.PlaybackParameters;\nimport com.google.android.exoplayer2.Player;\nimport com.google.android.exoplayer2.SimpleExoPlayer;\nimport com.google.android.exoplayer2.Timeline;\nimport com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;\nimport com.google.android.exoplayer2.source.ExtractorMediaSource;\nimport com.google.android.exoplayer2.source.MediaSource;\nimport com.google.android.exoplayer2.source.TrackGroupArray;\nimport com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;\nimport com.google.android.exoplayer2.trackselection.DefaultTrackSelector;\nimport com.google.android.exoplayer2.trackselection.TrackSelection;\nimport com.google.android.exoplayer2.trackselection.TrackSelectionArray;\nimport com.google.android.exoplayer2.ui.PlayerControlView;\nimport com.google.android.exoplayer2.ui.SimpleExoPlayerView;\nimport com.google.android.exoplayer2.upstream.BandwidthMeter;\nimport com.google.android.exoplayer2.upstream.DataSource;\nimport com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;\nimport com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;\nimport com.google.android.exoplayer2.util.Util;\nimport com.leo.simplearcloader.SimpleArcLoader;\n\n\nimport java.io.File;\n\n/**\n * An example full-screen activity that shows and hides the system UI (i.e.\n * status bar and navigation/system bar) with user interaction.\n */\npublic class FullscreenActivity extends AppCompatActivity {\n    private SimpleExoPlayerView simpleExoPlayerView;\n    private SimpleExoPlayer player;\n\n    private Timeline.Window window;\n    private DataSource.Factory mediaDataSourceFactory;\n    private DefaultTrackSelector trackSelector;\n    private boolean shouldAutoPlay;\n    private BandwidthMeter bandwidthMeter;\n\n    private PlayerControlView ivHideControllerButton;\n    private String URL;\n    private String duration;\n    private SimpleArcLoader simple_arc_loader_exo;\n    private String local;\n    private ImageView exo_pause;\n\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        requestWindowFeature(Window.FEATURE_NO_TITLE);\n        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,\n                WindowManager.LayoutParams.FLAG_FULLSCREEN);\n        Bundle bundle \u003d getIntent().getExtras() ;\n        this.URL \u003d  bundle.getString(\"video\");\n        this.local \u003d  bundle.getString(\"local\");\n        this.duration \u003d  bundle.getString(\"duration\");\n\n        setContentView(R.layout.activity_fullscreen);\n        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);\n\n        shouldAutoPlay \u003d true;\n        bandwidthMeter \u003d new DefaultBandwidthMeter();\n        mediaDataSourceFactory \u003d new DefaultDataSourceFactory(this, Util.getUserAgent(this, \"mediaPlayerSample\"));\n        window \u003d new Timeline.Window();\n        ivHideControllerButton \u003d (PlayerControlView) findViewById(R.id.exo_controller);\n        simple_arc_loader_exo \u003d (SimpleArcLoader) findViewById(R.id.simple_arc_loader_exo);\n        exo_pause \u003d (ImageView) findViewById(R.id.exo_pause);\n        ((RelativeLayout) findViewById(R.id.relative_layout_controller)).setVisibility(View.VISIBLE);\n\n    }\n\n\n    private void initializePlayer() {\n\n        simpleExoPlayerView \u003d (SimpleExoPlayerView) findViewById(R.id.video_view);\n        simpleExoPlayerView.requestFocus();\n\n        TrackSelection.Factory videoTrackSelectionFactory \u003d\n                new AdaptiveTrackSelection.Factory(bandwidthMeter);\n\n        trackSelector \u003d new DefaultTrackSelector(videoTrackSelectionFactory);\n\n        player \u003d ExoPlayerFactory.newSimpleInstance(this, trackSelector);\n\n        simpleExoPlayerView.setPlayer(player);\n        player.setPlayWhenReady(shouldAutoPlay);\n        Log.v(\"MY ONE\",URL);\n        DefaultExtractorsFactory extractorsFactory \u003d new DefaultExtractorsFactory();\n        MediaSource mediaSource;\n\n            mediaSource \u003dnew ExtractorMediaSource(Uri.parse(URL),\n                    mediaDataSourceFactory, extractorsFactory, null, null);\n\n        if (local!\u003dnull){\n            Log.v(\"this is path\",local);\n            Uri imageUri \u003d FileProvider.getUriForFile(FullscreenActivity.this, FullscreenActivity.this.getApplicationContext().getPackageName() + \".provider\", new File(local));\n            mediaSource \u003d new ExtractorMediaSource(imageUri,\n                    mediaDataSourceFactory, extractorsFactory, null, null);\n        }\n\n\n        player.seekTo(Integer.parseInt(duration));\n\n        player.prepare(mediaSource);\n        player.seekTo(Integer.parseInt(duration));\n\n        ivHideControllerButton.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                finish();\n            }\n        });\n        player.addListener(new Player.EventListener() {\n\n\n            @Override\n            public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {\n\n            }\n\n            @Override\n            public void onLoadingChanged(boolean isLoading) {\n\n            }\n\n            @Override\n            public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {\n                if (playbackState \u003d\u003d ExoPlayer.STATE_READY){\n                    simple_arc_loader_exo.setVisibility(View.GONE);\n                }\n                if (playbackState \u003d\u003d ExoPlayer.STATE_BUFFERING){\n                    simple_arc_loader_exo.setVisibility(View.VISIBLE);\n                    exo_pause.setVisibility(View.GONE);\n                }\n            }\n\n            @Override\n            public void onRepeatModeChanged(int repeatMode) {\n\n            }\n\n            @Override\n            public void onPlayerError(ExoPlaybackException error) {\n\n            }\n\n\n            @Override\n            public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {\n\n            }\n        });\n    }\n\n    private void releasePlayer() {\n        if (player !\u003d null) {\n            player.seekTo(Integer.parseInt(duration));\n            shouldAutoPlay \u003d player.getPlayWhenReady();\n            player.release();\n            player \u003d null;\n            trackSelector \u003d null;\n\n        }\n    }\n\n    @Override\n    public void onStart() {\n        super.onStart();\n        if (Util.SDK_INT \u003e 23) {\n            initializePlayer();\n        }\n    }\n\n    @Override\n    public void onResume() {\n        super.onResume();\n        if ((Util.SDK_INT \u003c\u003d 23 || player \u003d\u003d null)) {\n            initializePlayer();\n        }\n    }\n\n    @Override\n    public void onPause() {\n        super.onPause();\n        if (Util.SDK_INT \u003c\u003d 23) {\n            releasePlayer();\n        }\n    }\n\n    @Override\n    public void onStop() {\n        super.onStop();\n        if (Util.SDK_INT \u003e 23) {\n            releasePlayer();\n        }\n    }\n}\n"}}}
+[t=1595795287791] LSP4E to quarkus:
+Content-Length: 18329
+
+
+[t=1595795287822] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/adapters/RecyclerViewMediaAdapter.java","languageId":"quarkus","version":1,"text":"package com.algamil.whatsdownloader.adapters;\n\nimport android.app.Activity;\nimport android.content.ContentResolver;\nimport android.content.Intent;\nimport android.graphics.Bitmap;\nimport android.media.MediaScannerConnection;\nimport android.media.ThumbnailUtils;\nimport android.net.Uri;\nimport android.os.Build;\nimport android.os.Environment;\nimport android.provider.MediaStore;\nimport android.util.Log;\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.ViewGroup;\nimport android.webkit.MimeTypeMap;\nimport android.widget.Button;\nimport android.widget.ImageView;\nimport android.widget.LinearLayout;\nimport android.widget.Toast;\n\nimport androidx.cardview.widget.CardView;\nimport androidx.core.content.FileProvider;\nimport androidx.recyclerview.widget.RecyclerView;\n\nimport com.algamil.whatsdownloader.R;\nimport com.algamil.whatsdownloader.models.StatusWhatsapp;\nimport com.algamil.whatsdownloader.views.activities.FullscreenActivity;\nimport com.squareup.picasso.Picasso;\n\nimport java.io.File;\nimport java.io.FileInputStream;\nimport java.io.FileOutputStream;\nimport java.io.IOException;\nimport java.nio.channels.FileChannel;\nimport java.util.ArrayList;\n\nimport es.dmoral.toasty.Toasty;\n\n/**\n * Created by hsn on 06/11/2018.\n */\npublic class RecyclerViewMediaAdapter extends RecyclerView.Adapter\u003cRecyclerView.ViewHolder\u003e {\n\n    private String DIRECTORY_TO_SAVE_MEDIA_NOW \u003d \"/WSDownloader/\";\n    private ArrayList\u003cStatusWhatsapp\u003e filesList;\n    private Activity activity;\n\n    public RecyclerViewMediaAdapter(ArrayList\u003cStatusWhatsapp\u003e filesList, Activity activity) {\n        this.filesList \u003d filesList;\n        for (int i \u003d 0; i \u003c this.filesList.size(); i++) {\n            Log.v(\"ITEM_ADAPTER\",filesList.get(i).getFile().getAbsolutePath());\n        }\n        this.activity \u003d activity;\n    }\n\n\n    @Override\n    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {\n\n        RecyclerView.ViewHolder viewHolder \u003d null;\n        LayoutInflater inflater \u003d LayoutInflater.from(parent.getContext());\n        switch (viewType) {\n            case 0: {\n                View v1 \u003d inflater.inflate(R.layout.item_whatsapp_video, null);\n                viewHolder \u003d new RecyclerViewMediaAdapter.VideoHolder(v1);\n                break;\n            }\n            case 1: {\n                View v2 \u003d inflater.inflate(R.layout.item_whatsapp_image,null);\n                viewHolder \u003d new RecyclerViewMediaAdapter.ImageHolder(v2);\n                break;\n            }\n        }\n        return viewHolder;\n    }\n    @Override\n    public void onBindViewHolder(RecyclerView.ViewHolder holder_parent, final int position) {\n        switch (getItemViewType(position)) {\n            case 0: {\n                final RecyclerViewMediaAdapter.VideoHolder holder \u003d (RecyclerViewMediaAdapter.VideoHolder) holder_parent;\n                Bitmap bMap \u003d ThumbnailUtils.createVideoThumbnail(filesList.get(position).getFile().getAbsolutePath(), MediaStore.Video.Thumbnails.MINI_KIND);\n                holder.imageViewImageMedia.setImageBitmap(bMap);\n                holder.imageViewImageMedia.setOnClickListener(new View.OnClickListener() {\n                    @Override\n                    public void onClick(View v) {\n                        Intent intent\u003d new Intent(activity, FullscreenActivity.class);\n                        intent.putExtra(\"duration\", \"0\");\n                        intent.putExtra(\"video\",filesList.get(position).getFile().getAbsolutePath());\n                        activity.startActivity(intent);\n                    }\n                });\n                holder.linear_layout_whatsapp_video.setOnClickListener(new View.OnClickListener() {\n                    @Override\n                    public void onClick(View view) {\n                        try {\n                            copyFile(filesList.get(position).getFile(), new File(Environment.getExternalStorageDirectory().toString() + DIRECTORY_TO_SAVE_MEDIA_NOW + filesList.get(position).getFile().getName()));\n                            File sharefile \u003d new File(Environment.getExternalStorageDirectory().toString() + DIRECTORY_TO_SAVE_MEDIA_NOW + filesList.get(position).getFile().getName());\n\n//                            Uri imageUri \u003d FileProvider.getUriForFile(activity, activity.getApplicationContext().getPackageName() + \".provider\", sharefile);\n                            Intent shareIntent \u003d new Intent();\n                            shareIntent.setAction(Intent.ACTION_SEND);\n\n                            final String final_text \u003d activity.getResources().getString(R.string.download_more_from_link);\n                            shareIntent.putExtra(Intent.EXTRA_TEXT, final_text);\n                            shareIntent.setPackage(\"com.whatsapp\");\n                            shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);\n                            shareIntent.setType(getMimeType(imageUri));\n                            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);\n\n\n                            try {\n                                activity.startActivity(shareIntent);\n                            } catch (android.content.ActivityNotFoundException ex) {\n                                Toasty.error(activity.getApplicationContext(), activity.getResources().getString(R.string.whatsapp_not_installed), Toast.LENGTH_SHORT, true).show();\n                            }\n                        } catch (IOException e) {\n                            e.printStackTrace();\n                        }\n                    }\n                });\n                holder.linear_layout_share_video.setOnClickListener(new View.OnClickListener() {\n                    @Override\n                    public void onClick(View view) {\n                        try {\n                            copyFile(filesList.get(position).getFile(), new File(Environment.getExternalStorageDirectory().toString() + DIRECTORY_TO_SAVE_MEDIA_NOW + filesList.get(position).getFile().getName()));\n                            File sharefile  \u003d   new File(Environment.getExternalStorageDirectory().toString() + DIRECTORY_TO_SAVE_MEDIA_NOW + filesList.get(position).getFile().getName());\n                            Uri imageUri \u003d FileProvider.getUriForFile(activity, activity.getApplicationContext().getPackageName() + \".provider\", sharefile);\n                            Intent shareIntent \u003d new Intent();\n                            shareIntent.setAction(Intent.ACTION_SEND);\n                            final String final_text \u003d activity.getResources().getString(R.string.download_more_from_link);\n                            shareIntent.putExtra(Intent.EXTRA_TEXT,final_text );\n                            shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);\n                            shareIntent.setType(getMimeType(imageUri));\n                            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);\n                            try {\n                                activity.startActivity(shareIntent);\n                            } catch (android.content.ActivityNotFoundException ex) {\n                                Toasty.error(activity.getApplicationContext(), activity.getResources().getString(R.string.whatsapp_not_installed), Toast.LENGTH_SHORT, true).show();\n                            }\n                        } catch (IOException e) {\n                            e.printStackTrace();\n                        }\n\n                    }\n                });\n                holder.linear_layout_download_video.setOnClickListener(this.downloadMediaItem(filesList.get(position).getFile()));\n                break;\n            }\n            case 1: {\n\n                final RecyclerViewMediaAdapter.ImageHolder holder \u003d (RecyclerViewMediaAdapter.ImageHolder) holder_parent;\n                Picasso.with(activity.getApplicationContext()).load(filesList.get(position).getFile()).error(R.drawable.placeholder).placeholder(R.drawable.placeholder).into(holder.imageViewImageMedia);\n                holder.linear_layout_whatsapp_image.setOnClickListener(new View.OnClickListener() {\n                    @Override\n                    public void onClick(View view) {\n                        if (filesList.get(position).getFile().exists()){\n                            Log.v(\"V\",\"File Exist\");\n                        }else{\n                            Log.v(\"V\",\"Not File Exist\");\n                        }\n                        Intent shareIntent \u003d new Intent();\n                        shareIntent.setAction(Intent.ACTION_SEND);\n                        shareIntent.setPackage(\"com.whatsapp\");\n                        shareIntent.setType(getMimeType(Uri.parse(filesList.get(position).getFile().getAbsolutePath())));\n                        shareIntent.putExtra(Intent.EXTRA_STREAM,  Uri.parse(filesList.get(position).getFile().getAbsolutePath()));\n                        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);\n                        try {\n                            activity.startActivity(shareIntent);\n                        } catch (android.content.ActivityNotFoundException ex) {\n                            Toasty.error(activity.getApplicationContext(), activity.getResources().getString(R.string.whatsapp_not_installed), Toast.LENGTH_SHORT, true).show();\n                        }\n                    }\n                });\n                holder.linear_layout_share_image.setOnClickListener(new View.OnClickListener() {\n                    @Override\n                    public void onClick(View view) {\n                        try {\n                            copyFile(filesList.get(position).getFile(), new File(Environment.getExternalStorageDirectory().toString() + DIRECTORY_TO_SAVE_MEDIA_NOW + filesList.get(position).getFile().getName()));\n                            File sharefile  \u003d   new File(Environment.getExternalStorageDirectory().toString() + DIRECTORY_TO_SAVE_MEDIA_NOW + filesList.get(position).getFile().getName());\n\n                            Uri imageUri \u003d FileProvider.getUriForFile(activity, activity.getApplicationContext().getPackageName() + \".provider\", sharefile);\n                            Intent shareIntent \u003d new Intent();\n                            shareIntent.setAction(Intent.ACTION_SEND);\n\n\n\n                            final String final_text \u003d activity.getResources().getString(R.string.download_more_from_link);\n                            shareIntent.putExtra(Intent.EXTRA_TEXT,final_text );\n                            shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);\n                            shareIntent.setType(getMimeType(imageUri));\n                            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);\n\n\n                            try {\n                                activity.startActivity(shareIntent);\n                            } catch (android.content.ActivityNotFoundException ex) {\n                                Toasty.error(activity.getApplicationContext(), activity.getResources().getString(R.string.whatsapp_not_installed), Toast.LENGTH_SHORT, true).show();\n                            }\n                        } catch (IOException e) {\n                            e.printStackTrace();\n                        }\n\n                    }\n                });\n                holder.linear_layout_download_image.setOnClickListener(this.downloadMediaItem(filesList.get(position).getFile()));\n                break;\n            }\n        }\n\n\n\n\n\n\n    }\n    @Override\n    public int getItemViewType(int position) {\n        return  filesList.get(position).getViewType();\n    }\n    public int getItemCount() {\n        return filesList.size();\n    }\n\n\n\n    public View.OnClickListener downloadMediaItem(final File sourceFile) {\n        return new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                new Runnable(){\n                    @Override\n                    public void run() {\n                        try {\n                            copyFile(sourceFile, new File(Environment.getExternalStorageDirectory().toString() + DIRECTORY_TO_SAVE_MEDIA_NOW + sourceFile.getName()));\n                            Toasty.success(activity,activity.getResources().getString(R.string.save_successful_message), Toast.LENGTH_LONG).show();\n                        } catch (Exception e) {\n                            e.printStackTrace();\n                            Log.e(\"RecyclerV\", \"onClick: Error:\"+e.getMessage() );\n                            Toasty.error(activity,activity.getResources().getString(R.string.save_error_message), Toast.LENGTH_LONG).show();\n                        }\n                    }\n                }.run();\n            }\n        };\n    }\n\n    /**\n     * copy file to destination.\n     *\n     * @param sourceFile\n     * @param destFile\n     * @throws IOException\n     */\n    public  void copyFile(File sourceFile, File destFile) throws IOException {\n        if (!destFile.getParentFile().exists())\n            destFile.getParentFile().mkdirs();\n\n        if (!destFile.exists()) {\n            destFile.createNewFile();\n        }\n\n        FileChannel source \u003d null;\n        FileChannel destination \u003d null;\n\n        try {\n            source \u003d new FileInputStream(sourceFile).getChannel();\n            destination \u003d new FileOutputStream(destFile).getChannel();\n            destination.transferFrom(source, 0, source.size());\n        } finally {\n            if (source !\u003d null) {\n                source.close();\n            }\n            if (destination !\u003d null) {\n                destination.close();\n            }\n        }\n\n        MediaScannerConnection.scanFile(activity.getApplicationContext(), new String[] { destFile.getAbsolutePath() },\n                null,\n                new MediaScannerConnection.OnScanCompletedListener() {\n                    @Override\n                    public void onScanCompleted(String path, Uri uri) {\n\n                    }\n                });\n        if (Build.VERSION.SDK_INT \u003e\u003d Build.VERSION_CODES.KITKAT) {\n            final Intent scanIntent \u003d new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);\n            final Uri contentUri \u003d Uri.fromFile(destFile);\n            scanIntent.setData(contentUri);\n            activity.sendBroadcast(scanIntent);\n        } else {\n            final Intent intent \u003d new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse(destFile.getAbsolutePath()));\n            activity.sendBroadcast(intent);\n        }\n\n    }\n\n\n\n    public  class ImageHolder extends RecyclerView.ViewHolder {\n        private final LinearLayout linear_layout_download_image;\n        private final LinearLayout linear_layout_share_image;\n        private final LinearLayout linear_layout_whatsapp_image;\n        ImageView imageViewImageMedia;\n        CardView cardViewImageMedia;\n        Button buttonImageDownload;\n\n        public ImageHolder(View itemView) {\n            super(itemView);\n            imageViewImageMedia \u003d (ImageView) itemView.findViewById(R.id.imageViewImageMedia);\n            cardViewImageMedia \u003d (CardView) itemView.findViewById(R.id.cardViewImageMedia);\n            buttonImageDownload \u003d (Button) itemView.findViewById(R.id.buttonImageDownload);\n            linear_layout_download_image \u003d (LinearLayout) itemView.findViewById(R.id.linear_layout_download_image);\n            linear_layout_share_image \u003d (LinearLayout) itemView.findViewById(R.id.linear_layout_share_image);\n            linear_layout_whatsapp_image \u003d (LinearLayout) itemView.findViewById(R.id.linear_layout_whatsapp_image);\n        }\n\n    }\n    public  class VideoHolder extends RecyclerView.ViewHolder {\n        private final LinearLayout linear_layout_whatsapp_video;\n        private final LinearLayout linear_layout_download_video;\n        private final LinearLayout linear_layout_share_video;\n        private final ImageView imageViewImageMedia;\n        CardView cardViewVideoMedia;\n        Button buttonVideoDownload;\n\n        public VideoHolder(View itemView) {\n            super(itemView);\n            imageViewImageMedia \u003d (ImageView) itemView.findViewById(R.id.imageViewImageMedia);\n            cardViewVideoMedia \u003d (CardView) itemView.findViewById(R.id.cardViewVideoMedia);\n            buttonVideoDownload \u003d (Button) itemView.findViewById(R.id.buttonVideoDownload);\n            linear_layout_download_video \u003d (LinearLayout) itemView.findViewById(R.id.linear_layout_download_video);\n            linear_layout_share_video \u003d (LinearLayout) itemView.findViewById(R.id.linear_layout_share_video);\n            linear_layout_whatsapp_video \u003d (LinearLayout) itemView.findViewById(R.id.linear_layout_whatsapp_video);\n        }\n    }\n    public String getMimeType(Uri uri) {\n        String mimeType \u003d null;\n        if (uri.getScheme()!\u003dnull){\n            if (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {\n                ContentResolver cr \u003d activity.getApplicationContext().getContentResolver();\n                mimeType \u003d cr.getType(uri);\n            } else {\n                String fileExtension \u003d MimeTypeMap.getFileExtensionFromUrl(uri\n                        .toString());\n                mimeType \u003d MimeTypeMap.getSingleton().getMimeTypeFromExtension(\n                        fileExtension.toLowerCase());\n            }\n        }else{\n            mimeType \u003d \"*/*\";\n        }\n        return mimeType;\n    }\n}"}}}
+[t=1595795287877] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"4","method":"microprofile/java/projectLabels","params":{"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/views/activities/FullscreenActivity.java","types":["org.eclipse.microprofile.metrics.annotation.Metric","org.eclipse.microprofile.metrics.annotation.Counted","org.eclipse.microprofile.metrics.annotation.Gauge","org.eclipse.microprofile.metrics.annotation.ConcurrentGauge","org.eclipse.microprofile.metrics.annotation.Metered","org.eclipse.microprofile.metrics.annotation.Timed","org.eclipse.microprofile.metrics.annotation.SimplyTimed","org.eclipse.microprofile.metrics.annotation.RegistryType","org.eclipse.microprofile.openapi.annotations.Operation","org.eclipse.microprofile.openapi.annotations.media.Content","org.eclipse.microprofile.openapi.annotations.media.Schema","org.eclipse.microprofile.openapi.annotations.parameters.Parameters","org.eclipse.microprofile.openapi.annotations.parameters.Parameter","org.eclipse.microprofile.openapi.annotations.responses.APIResponses","org.eclipse.microprofile.openapi.annotations.responses.APIResponse","org.eclipse.microprofile.faulttolerance.Timeout","org.eclipse.microprofile.faulttolerance.Retry","org.eclipse.microprofile.faulttolerance.Fallback","org.eclipse.microprofile.faulttolerance.CircuitBreaker","org.eclipse.microprofile.faulttolerance.Bulkhead","javax.ws.rs.GET","io.quarkus.test.junit.QuarkusTest","io.quarkus.test.junit.SubstrateTest"]}}
+[t=1595795287909] LSP4E to quarkus:
+Content-Length: 2537
+
+
+[t=1595795287913] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"5","method":"microprofile/java/projectLabels","params":{"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/adapters/RecyclerViewMediaAdapter.java","types":["org.eclipse.microprofile.metrics.annotation.Metric","org.eclipse.microprofile.metrics.annotation.Counted","org.eclipse.microprofile.metrics.annotation.Gauge","org.eclipse.microprofile.metrics.annotation.ConcurrentGauge","org.eclipse.microprofile.metrics.annotation.Metered","org.eclipse.microprofile.metrics.annotation.Timed","org.eclipse.microprofile.metrics.annotation.SimplyTimed","org.eclipse.microprofile.metrics.annotation.RegistryType","org.eclipse.microprofile.openapi.annotations.Operation","org.eclipse.microprofile.openapi.annotations.media.Content","org.eclipse.microprofile.openapi.annotations.media.Schema","org.eclipse.microprofile.openapi.annotations.parameters.Parameters","org.eclipse.microprofile.openapi.annotations.parameters.Parameter","org.eclipse.microprofile.openapi.annotations.responses.APIResponses","org.eclipse.microprofile.openapi.annotations.responses.APIResponse","org.eclipse.microprofile.faulttolerance.Timeout","org.eclipse.microprofile.faulttolerance.Retry","org.eclipse.microprofile.faulttolerance.Fallback","org.eclipse.microprofile.faulttolerance.CircuitBreaker","org.eclipse.microprofile.faulttolerance.Bulkhead","javax.ws.rs.GET","io.quarkus.test.junit.QuarkusTest","io.quarkus.test.junit.SubstrateTest"]}}
+[t=1595795287966] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/local/PrefManager.java","languageId":"quarkus","version":1,"text":"package com.algamil.whatsdownloader.local;\n\n/**\n * Created by Tamim on 30/09/2017.\n */\n\nimport android.content.Context;\nimport android.content.SharedPreferences;\n\n\npublic class PrefManager {\n\n    SharedPreferences pref;\n    SharedPreferences.Editor editor;\n    Context _context;\n\n    // shared pref mode\n    int PRIVATE_MODE \u003d 0;\n\n    // Shared preferences file name\n    private static final String PREF_NAME \u003d \"status_app\";\n\n    private static final String IS_FIRST_TIME_LAUNCH \u003d \"IsFirstTimeLaunch\";\n\n    public PrefManager(Context context) {\n        this._context \u003d context;\n        pref \u003d _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);\n        editor \u003d pref.edit();\n    }\n\n    public void setBoolean(String PREF_NAME,Boolean val) {\n        editor.putBoolean(PREF_NAME, val);\n        editor.commit();\n    }\n    public void setString(String PREF_NAME,String VAL) {\n        editor.putString(PREF_NAME, VAL);\n        editor.commit();\n    }\n    public void setInt(String PREF_NAME,int VAL) {\n        editor.putInt(PREF_NAME, VAL);\n        editor.commit();\n    }\n    public boolean getBoolean(String PREF_NAME) {\n        return pref.getBoolean(PREF_NAME,true);\n    }\n    public void remove(String PREF_NAME){\n        if(pref.contains(PREF_NAME)){\n            editor.remove(PREF_NAME);\n            editor.commit();\n        }\n    }\n    public String getString(String PREF_NAME) {\n        if(pref.contains(PREF_NAME)){\n            return pref.getString(PREF_NAME,null);\n        }\n        if (PREF_NAME.equals(\"LANGUAGE_DEFAULT\")){\n            return \"0\";\n        }\n        if(PREF_NAME.equals(\"ORDER_DEFAULT_IMAGE\")){\n            return \"created\";\n        }\n        if(PREF_NAME.equals(\"ORDER_DEFAULT_GIF\")){\n            return \"created\";\n        }\n        if(PREF_NAME.equals(\"ORDER_DEFAULT_VIDEO\")){\n            return \"created\";\n        }\n        if(PREF_NAME.equals(\"ORDER_DEFAULT_JOKE\")){\n            return \"created\";\n        }\n        if(PREF_NAME.equals(\"ORDER_DEFAULT_STATUS\")){\n            return \"created\";\n        }\n        return  \"\";\n    }\n\n    public int getInt(String key) {\n        return pref.getInt(key,0);\n    }\n}\n"}}}
+[t=1595795288001] LSP4E to quarkus:
+Content-Length: 40
+
+
+[t=1595795288004] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"6","method":"microprofile/java/projectLabels","params":{"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/local/PrefManager.java","types":["org.eclipse.microprofile.metrics.annotation.Metric","org.eclipse.microprofile.metrics.annotation.Counted","org.eclipse.microprofile.metrics.annotation.Gauge","org.eclipse.microprofile.metrics.annotation.ConcurrentGauge","org.eclipse.microprofile.metrics.annotation.Metered","org.eclipse.microprofile.metrics.annotation.Timed","org.eclipse.microprofile.metrics.annotation.SimplyTimed","org.eclipse.microprofile.metrics.annotation.RegistryType","org.eclipse.microprofile.openapi.annotations.Operation","org.eclipse.microprofile.openapi.annotations.media.Content","org.eclipse.microprofile.openapi.annotations.media.Schema","org.eclipse.microprofile.openapi.annotations.parameters.Parameters","org.eclipse.microprofile.openapi.annotations.parameters.Parameter","org.eclipse.microprofile.openapi.annotations.responses.APIResponses","org.eclipse.microprofile.openapi.annotations.responses.APIResponse","org.eclipse.microprofile.faulttolerance.Timeout","org.eclipse.microprofile.faulttolerance.Retry","org.eclipse.microprofile.faulttolerance.Fallback","org.eclipse.microprofile.faulttolerance.CircuitBreaker","org.eclipse.microprofile.faulttolerance.Bulkhead","javax.ws.rs.GET","io.quarkus.test.junit.QuarkusTest","io.quarkus.test.junit.SubstrateTest"]}}
+[t=1595795288039] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"2","result":null}
+[t=1595795288057] LSP4E to quarkus:
+Content-Length: 4269
+
+
+[t=1595795288077] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/views/activities/WhatsAppActivity.java","languageId":"quarkus","version":1,"text":"package com.algamil.whatsdownloader.views.activities;\n\nimport android.os.Bundle;\nimport android.os.Environment;\nimport android.view.MenuItem;\n\nimport androidx.appcompat.app.AppCompatActivity;\nimport androidx.recyclerview.widget.LinearLayoutManager;\nimport androidx.recyclerview.widget.RecyclerView;\nimport androidx.swiperefreshlayout.widget.SwipeRefreshLayout;\n\nimport com.algamil.whatsdownloader.R;\nimport com.algamil.whatsdownloader.adapters.RecyclerViewMediaAdapter;\nimport com.algamil.whatsdownloader.models.StatusWhatsapp;\n\nimport java.io.File;\nimport java.util.ArrayList;\n\npublic class WhatsAppActivity extends AppCompatActivity {\n    private static final String WHATSAPP_STATUSES_LOCATION \u003d \"/WhatsApp/Media/.Statuses\";\n    private RecyclerView mRecyclerViewMediaList;\n    private LinearLayoutManager mLinearLayoutManager;\n    public static final String TAG \u003d \"Home\";\n    private SwipeRefreshLayout swipe_refreshl_whatsapp_saver;\n    private ArrayList\u003cStatusWhatsapp\u003e inFiles;\n    private RecyclerViewMediaAdapter recyclerViewMediaAdapter;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_whats_app);\n        getSupportActionBar().setDisplayHomeAsUpEnabled(true);\n\n        inFiles \u003d new ArrayList\u003cStatusWhatsapp\u003e();\n        getListFiles(new File(Environment.getExternalStorageDirectory().toString()+WHATSAPP_STATUSES_LOCATION));\n\n        swipe_refreshl_whatsapp_saver \u003d (SwipeRefreshLayout) findViewById(R.id.swipe_refreshl_whatsapp_saver);\n        mRecyclerViewMediaList \u003d (RecyclerView) findViewById(R.id.recyclerViewMedia);\n        mLinearLayoutManager \u003d new LinearLayoutManager(this);\n\n\n        recyclerViewMediaAdapter \u003dnew RecyclerViewMediaAdapter(inFiles, WhatsAppActivity.this);\n        mRecyclerViewMediaList.setHasFixedSize(true);\n        mRecyclerViewMediaList.setAdapter(recyclerViewMediaAdapter);\n        mRecyclerViewMediaList.setLayoutManager(mLinearLayoutManager);\n        swipe_refreshl_whatsapp_saver.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {\n            @Override\n            public void onRefresh() {\n                swipe_refreshl_whatsapp_saver.setRefreshing(false);\n                getListFiles(new File(Environment.getExternalStorageDirectory().toString()+WHATSAPP_STATUSES_LOCATION));\n                recyclerViewMediaAdapter.notifyDataSetChanged();\n            }\n        });\n    }\n    private ArrayList\u003cStatusWhatsapp\u003e getListFiles(File parentDir) {\n\n        inFiles.clear();\n        File[] files;\n        files \u003d parentDir.listFiles();\n        if (files !\u003d null) {\n            for (File file : files) {\n\n                if (file.getName().endsWith(\".jpg\") || file.getName().endsWith(\".gif\") ||  file.getName().endsWith(\".mp4\")) {\n                    if (!inFiles.contains(file))\n                        if (file.getName().endsWith(\".mp4\")){\n                            inFiles.add(new StatusWhatsapp().setFile(file).setViewType(0));\n                        }else{\n                            inFiles.add(new StatusWhatsapp().setFile(file).setViewType(1));\n                        }\n                }\n            }\n        }\n        return inFiles;\n    }\n    @Override\n    public void onBackPressed(){\n        super.onBackPressed();\n        overridePendingTransition(R.anim.back_enter, R.anim.back_exit);\n        return;\n    }\n    @Override\n    public boolean onOptionsItemSelected(MenuItem item) {\n        switch (item.getItemId()) {\n            // Respond to the action bar\u0027s Up/Home button\n            case android.R.id.home:\n                super.onBackPressed();\n                overridePendingTransition(R.anim.back_enter, R.anim.back_exit);\n                return true;\n        }\n        return super.onOptionsItemSelected(item);\n    }\n}\n"}}}
+[t=1595795288101] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"7","method":"microprofile/java/projectLabels","params":{"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/views/activities/WhatsAppActivity.java","types":["org.eclipse.microprofile.metrics.annotation.Metric","org.eclipse.microprofile.metrics.annotation.Counted","org.eclipse.microprofile.metrics.annotation.Gauge","org.eclipse.microprofile.metrics.annotation.ConcurrentGauge","org.eclipse.microprofile.metrics.annotation.Metered","org.eclipse.microprofile.metrics.annotation.Timed","org.eclipse.microprofile.metrics.annotation.SimplyTimed","org.eclipse.microprofile.metrics.annotation.RegistryType","org.eclipse.microprofile.openapi.annotations.Operation","org.eclipse.microprofile.openapi.annotations.media.Content","org.eclipse.microprofile.openapi.annotations.media.Schema","org.eclipse.microprofile.openapi.annotations.parameters.Parameters","org.eclipse.microprofile.openapi.annotations.parameters.Parameter","org.eclipse.microprofile.openapi.annotations.responses.APIResponses","org.eclipse.microprofile.openapi.annotations.responses.APIResponse","org.eclipse.microprofile.faulttolerance.Timeout","org.eclipse.microprofile.faulttolerance.Retry","org.eclipse.microprofile.faulttolerance.Fallback","org.eclipse.microprofile.faulttolerance.CircuitBreaker","org.eclipse.microprofile.faulttolerance.Bulkhead","javax.ws.rs.GET","io.quarkus.test.junit.QuarkusTest","io.quarkus.test.junit.SubstrateTest"]}}
+[t=1595795288108] LSP4E to quarkus:
+Content-Length: 40
+
+
+[t=1595795288108] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"3","result":null}
+[t=1595795288109] LSP4E to quarkus:
+Content-Length: 40
+
+
+[t=1595795288110] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"1","result":null}
+[t=1595795288112] LSP4E to quarkus:
+Content-Length: 121
+
+
+[t=1595795288113] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"5","result":{"uri":"C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/app.iml","labels":[]}}
+[t=1595795288114] LSP4E to quarkus:
+Content-Length: 121
+
+
+[t=1595795288115] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"4","result":{"uri":"C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/app.iml","labels":[]}}
+[t=1595795288116] LSP4E to quarkus:
+Content-Length: 121
+
+
+[t=1595795288116] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"6","result":{"uri":"C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/app.iml","labels":[]}}
+[t=1595795288170] LSP4E to quarkus:
+Content-Length: 121
+
+
+[t=1595795288207] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"7","result":{"uri":"C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/app.iml","labels":[]}}
+[t=1595795317173] LSP4E to quarkus:
+Content-Length: 163
+
+
+[t=1595795317220] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"microprofile/propertiesChanged","params":{"type":[1],"projectURIs":["C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/app.iml"]}}
+[t=1595795391282] LSP4E to quarkus:
+Content-Length: 372
+
+
+[t=1595795391315] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":2,"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/adapters/RecyclerViewMediaAdapter.java"},"contentChanges":[{"range":{"start":{"line":107,"character":70},"end":{"line":107,"character":70}},"rangeLength":0,"text":"p"}]}}
+[t=1595795391551] LSP4E to quarkus:
+Content-Length: 372
+
+
+[t=1595795391598] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":3,"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/adapters/RecyclerViewMediaAdapter.java"},"contentChanges":[{"range":{"start":{"line":107,"character":71},"end":{"line":107,"character":71}},"rangeLength":0,"text":"r"}]}}
+[t=1595795391764] LSP4E to quarkus:
+Content-Length: 372
+
+
+[t=1595795391892] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":4,"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/adapters/RecyclerViewMediaAdapter.java"},"contentChanges":[{"range":{"start":{"line":107,"character":72},"end":{"line":107,"character":72}},"rangeLength":0,"text":"o"}]}}
+[t=1595795391921] LSP4E to quarkus:
+Content-Length: 372
+
+
+[t=1595795391934] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":7,"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/adapters/RecyclerViewMediaAdapter.java"},"contentChanges":[{"range":{"start":{"line":107,"character":75},"end":{"line":107,"character":75}},"rangeLength":0,"text":"d"}]}}
+[t=1595795391945] LSP4E to quarkus:
+Content-Length: 372
+
+
+[t=1595795391955] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":6,"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/adapters/RecyclerViewMediaAdapter.java"},"contentChanges":[{"range":{"start":{"line":107,"character":74},"end":{"line":107,"character":74}},"rangeLength":0,"text":"i"}]}}
+[t=1595795391964] LSP4E to quarkus:
+Content-Length: 372
+
+
+[t=1595795391974] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":5,"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/adapters/RecyclerViewMediaAdapter.java"},"contentChanges":[{"range":{"start":{"line":107,"character":73},"end":{"line":107,"character":73}},"rangeLength":0,"text":"v"}]}}
+[t=1595795391984] LSP4E to quarkus:
+Content-Length: 372
+
+
+[t=1595795391997] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":9,"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/adapters/RecyclerViewMediaAdapter.java"},"contentChanges":[{"range":{"start":{"line":107,"character":77},"end":{"line":107,"character":77}},"rangeLength":0,"text":"r"}]}}
+[t=1595795392008] LSP4E to quarkus:
+Content-Length: 372
+
+
+[t=1595795392021] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":8,"uri":"file:///C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/src/main/java/com/algamil/whatsdownloader/adapters/RecyclerViewMediaAdapter.java"},"contentChanges":[{"range":{"start":{"line":107,"character":76},"end":{"line":107,"character":76}},"rangeLength":0,"text":"e"}]}}
+[t=1595795405705] LSP4E to quarkus:
+Content-Length: 163
+
+
+[t=1595795405720] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"microprofile/propertiesChanged","params":{"type":[1],"projectURIs":["C:/Users/gemy/AndroidStudioProjects/WhatsDownloader/app/app.iml"]}}
+[t=1595795596189] LSP4E to quarkus:
+Content-Length: 60
+
+
+[t=1595795596479] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"2","method":"shutdown","params":null}
+[t=1595795596504] LSP4E to quarkus:
+Content-Length: 47
+
+
+[t=1595795596896] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"exit","params":null}
+[t=1595795596917] LSP4E to quarkus:
+Content-Length: 60
+
+
+[t=1595795597636] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"3","method":"shutdown","params":null}
+[t=1595795597771] LSP4E to quarkus:
+Content-Length: 47
+
+
+[t=1595795597787] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"exit","params":null}
+[t=1595873723443] LSP4E to quarkus:
+Content-Length: 1368
+
+
+[t=1595873723686] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"1","method":"initialize","params":{"processId":10464,"rootPath":"/E:/Android Projects/MyWayStore/app/","rootUri":"file:/E:/Android%20Projects/MyWayStore/app/","capabilities":{"workspace":{"applyEdit":true,"workspaceEdit":{"documentChanges":true,"resourceOperations":["create","delete","rename"],"failureHandling":"undo"},"symbol":{"dynamicRegistration":true},"executeCommand":{"dynamicRegistration":true},"workspaceFolders":true},"textDocument":{"synchronization":{"willSave":true,"willSaveWaitUntil":true,"didSave":true},"completion":{"completionItem":{"snippetSupport":true,"documentationFormat":["markdown","plaintext"]}},"hover":{"contentFormat":["markdown","plaintext"]},"signatureHelp":{},"references":{},"documentHighlight":{},"documentSymbol":{"symbolKind":{"valueSet":[18,17,5,14,9,10,22,24,8,1,12,11,20,6,2,3,21,16,19,25,4,7,15,23,26,13]},"hierarchicalDocumentSymbolSupport":true},"formatting":{"dynamicRegistration":true},"rangeFormatting":{},"definition":{"linkSupport":true},"typeDefinition":{"linkSupport":true},"codeAction":{"codeActionLiteralSupport":{"codeActionKind":{"valueSet":["quickfix","refactor","refactor.extract","refactor.inline","refactor.rewrite","source","source.organizeImports"]}},"dynamicRegistration":true},"codeLens":{},"documentLink":{},"colorProvider":{},"rename":{}}},"clientName":"IntelliJ","trace":"off"}}
+[t=1595873725688] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"1","result":{"capabilities":{"textDocumentSync":2,"hoverProvider":true,"completionProvider":{"resolveProvider":false,"triggerCharacters":[".","%","\u003d","@"]},"definitionProvider":true,"documentSymbolProvider":true,"codeLensProvider":{"resolveProvider":false},"documentFormattingProvider":false,"documentRangeFormattingProvider":true}}}
+[t=1595873725778] LSP4E to quarkus:
+Content-Length: 52
+
+
+[t=1595873725790] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"initialized","params":{}}
+[t=1595873725815] LSP4E to quarkus:
+Content-Length: 8865
+
+
+[t=1595873725818] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"1","method":"client/registerCapability","params":{"registrations":[{"id":"8d6ee7e1-2dc0-4261-be74-042a5920d866","method":"textDocument/codeAction"}]}}
+[t=1595873725821] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"2","method":"client/registerCapability","params":{"registrations":[{"id":"2199aeac-6dbe-41ba-b5b8-c11344817507","method":"textDocument/formatting"}]}}
+[t=1595873725822] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"3","method":"client/registerCapability","params":{"registrations":[{"id":"f7da0bf0-22c4-4a15-bfee-81d637a39023","method":"textDocument/rangeFormatting"}]}}
+[t=1595873725841] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/ui/home/HomeFragment.java","languageId":"quarkus","version":1,"text":"package com.algamil.souq.views.activities.ui.home;\n\nimport android.os.Build;\nimport android.os.Bundle;\nimport android.os.CountDownTimer;\nimport android.text.Html;\nimport android.util.Log;\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.ViewGroup;\nimport android.widget.LinearLayout;\nimport android.widget.TextView;\nimport android.widget.Toast;\n\nimport androidx.annotation.NonNull;\nimport androidx.annotation.RequiresApi;\nimport androidx.fragment.app.Fragment;\nimport androidx.recyclerview.widget.GridLayoutManager;\nimport androidx.recyclerview.widget.LinearLayoutManager;\nimport androidx.recyclerview.widget.RecyclerView;\nimport androidx.viewpager.widget.ViewPager;\n\nimport com.algamil.souq.R;\nimport com.algamil.souq.adapters.ImagesSlider;\nimport com.algamil.souq.adapters.RecyclerItemAdapter;\nimport com.algamil.souq.adapters.RecyclerItemAdapter2;\nimport com.algamil.souq.data.models.category.Category;\n\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.List;\n\nimport butterknife.BindView;\nimport butterknife.ButterKnife;\nimport retrofit2.Call;\nimport retrofit2.Callback;\nimport retrofit2.Response;\n\nimport static com.algamil.souq.data.api.ApiClient.getApiClient;\n\npublic class HomeFragment extends Fragment {\n\n    @BindView(R.id.vp_welcomming_frame)\n    ViewPager vpWelcommingFrame;\n    @BindView(R.id.new_container)\n    LinearLayout newContainer;\n    @BindView(R.id.view)\n    View view;\n    ImagesSlider imagesSlider;\n    String Operation \u003d \"next\";\n    int total, count;\n    @BindView(R.id.recycler_home)\n    RecyclerView recyclerHome;\n    private TextView[] dots;\n    int coloractive;\n    int colorinactive;\n    int[] ids2 \u003d {41,35,40,46,48,49,50,51,191,52,53,58,55,62,61,60,63,68,69,71,70,88,87\n            ,54,90,57,91,97,96,86,93,82,108,98,156,99,106,100,158, 157,160,154,105,155,85,83,72,170};\n    Category[] cats;\n    private int[] IMAGES \u003d {R.drawable.delete_search, R.drawable.category, R.drawable.search, R.drawable.homes};\n    private RecyclerItemAdapter recyclerItemAdapter;\n    private RecyclerItemAdapter2 recyclerItemAdapter2;\n    List\u003cCategory\u003e anything;\n\n    public View onCreateView(@NonNull LayoutInflater inflater,\n                             ViewGroup container, Bundle savedInstanceState) {\n\n        View root \u003d inflater.inflate(R.layout.fragment_home, container, false);\n        ButterKnife.bind(this, root);\n        coloractive \u003d getResources().getColor(R.color.whats_app);\n        colorinactive \u003d getResources().getColor(R.color.linked);\n        total \u003d IMAGES.length;\n        count \u003d 0;\n        cats \u003d new Category[195];\n        imagesSlider \u003d new ImagesSlider(getActivity(), IMAGES);\n        vpWelcommingFrame.setAdapter(imagesSlider);\n        addBottomDtos();\n        dots[0].setTextColor(coloractive);\n        new CountDownTimer(4000, 1000) {\n            @Override\n            public void onTick(long millisUntilFinished) {\n\n            }\n\n            @Override\n            public void onFinish() {\n                vpWelcommingFrame.setCurrentItem(1);\n            }\n\n        }.start();\n        vpWelcommingFrame.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {\n            @Override\n            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {\n\n            }\n\n            @Override\n            public void onPageSelected(int position) {\n                addBottomDtos();\n                dots[position].setTextColor(coloractive);\n                count \u003d 0;\n                count \u003d position + 1;\n                if (count \u003d\u003d total) {\n                    new CountDownTimer(4000, 1000) {\n                        @Override\n                        public void onTick(long millisUntilFinished) {\n\n                        }\n\n                        @Override\n                        public void onFinish() {\n                            vpWelcommingFrame.setCurrentItem(0);\n                        }\n\n                    }.start();\n                } else if (count \u003c total ) {\n                    new CountDownTimer(4000, 1000) {\n                        @Override\n                        public void onTick(long millisUntilFinished) {\n\n                        }\n\n                        @Override\n                        public void onFinish() {\n                            vpWelcommingFrame.setCurrentItem(count);\n                        }\n\n                    }.start();\n                }\n            }\n\n            @Override\n            public void onPageScrollStateChanged(int state) {\n\n            }\n        });\n\n//        makingAddIntoList();\n        showCats();\n        return root;\n    }\n\n    public void showCats()\n    {\n        getApiClient().get_Categories(\"/wp/v2/categories/\").enqueue(new Callback\u003cList\u003cCategory\u003e\u003e() {\n            @Override\n            public void onResponse(Call\u003cList\u003cCategory\u003e\u003e call, Response\u003cList\u003cCategory\u003e\u003e response) {\n                Toast.makeText(getActivity(), response.isSuccessful() + \"\", Toast.LENGTH_SHORT).show();\n                makeRecyclerView2(response.body());\n            }\n\n            @Override\n            public void onFailure(Call\u003cList\u003cCategory\u003e\u003e call, Throwable t) {\n\n            }\n        });\n    }\n\n    public void addBottomDtos() {\n        try {\n            dots \u003d new TextView[total];\n            newContainer.removeAllViews();\n            for (int i \u003d 0; i \u003c dots.length; i++) {\n                dots[i] \u003d new TextView(getActivity().getApplicationContext());\n                dots[i].setText(Html.fromHtml(\"\u0026#8226;\"));\n                dots[i].setTextSize(35);\n                dots[i].setTextColor(colorinactive);\n                newContainer.addView(dots[i]);\n            }\n\n        }\n        catch (Exception e)\n        {\n\n        }\n\n    }\n\n    public void makingAddIntoList()\n    {\n        for (int i \u003d 0 ; i \u003c\u003d 195 ; i++ )\n        {\n            try {\n                getCategory(i);\n            }\n            catch (Exception e)\n            {\n                continue;\n            }\n        }\n\n    }\n\n    public void getCategory(int ids) throws Exception\n    {\n\n        getApiClient().get_Category(\"/wp/v2/categories/\" + ids + \"\" ).enqueue(new Callback\u003cCategory\u003e() {\n            @Override\n            public void onResponse(Call\u003cCategory\u003e call, Response\u003cCategory\u003e response) {\n                if(response.isSuccessful())\n                {\n                    if(response.body() \u003d\u003d null)\n                    {\n\n                    }\n                    else {\n                        cats[ids] \u003d response.body();\n                        Log.d(\"helllllooo\" ,ids + \"   \" + cats[ids].getName() + \"size \" + cats.length );\n                    }\n                }\n                else {\n                    if(ids \u003d\u003d 195)\n                    {\n//                        makeFilter();\n                    }\n                    else {\n                        Toast.makeText(getActivity(), \"\", Toast.LENGTH_SHORT).show();\n                        cats[ids] \u003d new Category(0, 0, \"\", \"\", \"\", \"\", \"\", 0, null, null);\n                        Log.d(\"helllllooo\", ids + \"   \" + cats[ids].getName() + \"size \" + cats.length);\n                    }\n                }\n            }\n\n            @Override\n            public void onFailure(Call\u003cCategory\u003e call, Throwable t) {\n                Toast.makeText(getActivity(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();\n            }\n        });\n\n    }\n\n    public void makeRecyclerView(Category[] categories) {\n        recyclerHome.setLayoutManager(new GridLayoutManager(getActivity(), 2));\n        recyclerHome.setHasFixedSize(true);\n        recyclerItemAdapter \u003d new RecyclerItemAdapter(getActivity(), categories);\n        recyclerHome.setAdapter(recyclerItemAdapter);\n    }\n\n    public void makeRecyclerView2(List\u003cCategory\u003e categories) {\n        recyclerHome.setLayoutManager(new GridLayoutManager(getActivity(), 2));\n        recyclerHome.setHasFixedSize(true);\n        recyclerItemAdapter2 \u003d new RecyclerItemAdapter2(getActivity(), categories);\n        recyclerHome.setAdapter(recyclerItemAdapter);\n    }\n\n}\n"}}}
+[t=1595873725853] LSP4E to quarkus:
+Content-Length: 40
+
+
+[t=1595873725867] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"1","result":null}
+[t=1595873725879] LSP4E to quarkus:
+Content-Length: 2652
+
+
+[t=1595873725901] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/adapters/RecyclerItemAdapter2.java","languageId":"quarkus","version":1,"text":"package com.algamil.souq.adapters;\n\nimport android.app.Activity;\nimport android.content.Context;\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.ViewGroup;\nimport android.widget.ImageView;\nimport android.widget.TextView;\n\nimport androidx.annotation.NonNull;\nimport androidx.constraintlayout.widget.ConstraintLayout;\nimport androidx.recyclerview.widget.RecyclerView;\n\nimport com.algamil.souq.R;\nimport com.algamil.souq.data.models.category.Category;\n\nimport java.util.List;\n\nimport butterknife.BindView;\nimport butterknife.ButterKnife;\n\npublic class RecyclerItemAdapter2 extends RecyclerView.Adapter\u003cRecyclerItemAdapter2.CustomRecyclerViewHolder\u003e {\n\n    Activity activity;\n    List\u003cCategory\u003e categories;\n    @BindView(R.id.roundedImageView)\n    ImageView roundedImageView;\n    @BindView(R.id.textView)\n    TextView textView;\n    @BindView(R.id.item_category)\n    ConstraintLayout itemCategory;\n\n    public RecyclerItemAdapter2(Activity activity, List\u003cCategory\u003e categories2) {\n        this.activity \u003d activity;\n        this.categories \u003d categories2;\n    }\n\n    @NonNull\n    @Override\n    public CustomRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\n        View view \u003d LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view, parent, false);\n        ButterKnife.bind(this, view);\n        return new CustomRecyclerViewHolder(view);\n    }\n\n    @Override\n    public void onBindViewHolder(@NonNull CustomRecyclerViewHolder holder, int position) {\n        holder.textView.setText(categories.get(position).getName());\n    }\n\n    @Override\n    public int getItemCount() {\n        return categories.size();\n    }\n\n    public Activity getActivity() {\n        return activity;\n    }\n\n    public class CustomRecyclerViewHolder extends RecyclerView.ViewHolder {\n\n        @BindView(R.id.roundedImageView)\n        ImageView roundedImageView;\n        @BindView(R.id.textView)\n        TextView textView;\n        @BindView(R.id.item_category)\n        ConstraintLayout itemCategory;\n\n        public Context con;\n\n        public CustomRecyclerViewHolder(@NonNull View itemView) {\n            super(itemView);\n            con \u003d itemView.getContext();\n            ButterKnife.bind(this, itemView);\n        }\n\n    }\n\n}"}}}
+[t=1595873725904] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"4","method":"microprofile/java/projectLabels","params":{"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/ui/home/HomeFragment.java","types":["org.eclipse.microprofile.metrics.annotation.Metric","org.eclipse.microprofile.metrics.annotation.Counted","org.eclipse.microprofile.metrics.annotation.Gauge","org.eclipse.microprofile.metrics.annotation.ConcurrentGauge","org.eclipse.microprofile.metrics.annotation.Metered","org.eclipse.microprofile.metrics.annotation.Timed","org.eclipse.microprofile.metrics.annotation.SimplyTimed","org.eclipse.microprofile.metrics.annotation.RegistryType","org.eclipse.microprofile.openapi.annotations.Operation","org.eclipse.microprofile.openapi.annotations.media.Content","org.eclipse.microprofile.openapi.annotations.media.Schema","org.eclipse.microprofile.openapi.annotations.parameters.Parameters","org.eclipse.microprofile.openapi.annotations.parameters.Parameter","org.eclipse.microprofile.openapi.annotations.responses.APIResponses","org.eclipse.microprofile.openapi.annotations.responses.APIResponse","org.eclipse.microprofile.faulttolerance.Timeout","org.eclipse.microprofile.faulttolerance.Retry","org.eclipse.microprofile.faulttolerance.Fallback","org.eclipse.microprofile.faulttolerance.CircuitBreaker","org.eclipse.microprofile.faulttolerance.Bulkhead","javax.ws.rs.GET","io.quarkus.test.junit.QuarkusTest","io.quarkus.test.junit.SubstrateTest"]}}
+[t=1595873725917] LSP4E to quarkus:
+Content-Length: 721
+
+
+[t=1595873725919] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"5","method":"microprofile/java/projectLabels","params":{"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/adapters/RecyclerItemAdapter2.java","types":["org.eclipse.microprofile.metrics.annotation.Metric","org.eclipse.microprofile.metrics.annotation.Counted","org.eclipse.microprofile.metrics.annotation.Gauge","org.eclipse.microprofile.metrics.annotation.ConcurrentGauge","org.eclipse.microprofile.metrics.annotation.Metered","org.eclipse.microprofile.metrics.annotation.Timed","org.eclipse.microprofile.metrics.annotation.SimplyTimed","org.eclipse.microprofile.metrics.annotation.RegistryType","org.eclipse.microprofile.openapi.annotations.Operation","org.eclipse.microprofile.openapi.annotations.media.Content","org.eclipse.microprofile.openapi.annotations.media.Schema","org.eclipse.microprofile.openapi.annotations.parameters.Parameters","org.eclipse.microprofile.openapi.annotations.parameters.Parameter","org.eclipse.microprofile.openapi.annotations.responses.APIResponses","org.eclipse.microprofile.openapi.annotations.responses.APIResponse","org.eclipse.microprofile.faulttolerance.Timeout","org.eclipse.microprofile.faulttolerance.Retry","org.eclipse.microprofile.faulttolerance.Fallback","org.eclipse.microprofile.faulttolerance.CircuitBreaker","org.eclipse.microprofile.faulttolerance.Bulkhead","javax.ws.rs.GET","io.quarkus.test.junit.QuarkusTest","io.quarkus.test.junit.SubstrateTest"]}}
+[t=1595873725930] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/data/api/ApiService.java","languageId":"quarkus","version":1,"text":"package com.algamil.souq.data.api;\n\nimport com.algamil.souq.data.models.category.Category;\n\nimport java.util.List;\n\nimport retrofit2.Call;\nimport retrofit2.http.GET;\nimport retrofit2.http.Query;\n\npublic interface ApiService {\n\n    @GET(\"index.php\")\n    Call\u003cList\u003cCategory\u003e\u003e get_Categories (@Query(\"rest_route\") String rest_route);\n\n    @GET(\"index.php\")\n    Call\u003cCategory\u003e get_Category (@Query(\"rest_route\") String rest_route);\n\n\n}\n"}}}
+[t=1595873725940] LSP4E to quarkus:
+Content-Length: 100
+
+
+[t=1595873725942] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"6","method":"microprofile/java/projectLabels","params":{"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/data/api/ApiService.java","types":["org.eclipse.microprofile.metrics.annotation.Metric","org.eclipse.microprofile.metrics.annotation.Counted","org.eclipse.microprofile.metrics.annotation.Gauge","org.eclipse.microprofile.metrics.annotation.ConcurrentGauge","org.eclipse.microprofile.metrics.annotation.Metered","org.eclipse.microprofile.metrics.annotation.Timed","org.eclipse.microprofile.metrics.annotation.SimplyTimed","org.eclipse.microprofile.metrics.annotation.RegistryType","org.eclipse.microprofile.openapi.annotations.Operation","org.eclipse.microprofile.openapi.annotations.media.Content","org.eclipse.microprofile.openapi.annotations.media.Schema","org.eclipse.microprofile.openapi.annotations.parameters.Parameters","org.eclipse.microprofile.openapi.annotations.parameters.Parameter","org.eclipse.microprofile.openapi.annotations.responses.APIResponses","org.eclipse.microprofile.openapi.annotations.responses.APIResponse","org.eclipse.microprofile.faulttolerance.Timeout","org.eclipse.microprofile.faulttolerance.Retry","org.eclipse.microprofile.faulttolerance.Fallback","org.eclipse.microprofile.faulttolerance.CircuitBreaker","org.eclipse.microprofile.faulttolerance.Bulkhead","javax.ws.rs.GET","io.quarkus.test.junit.QuarkusTest","io.quarkus.test.junit.SubstrateTest"]}}
+[t=1595873726429] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"4","result":{"uri":"E:/Android Projects/MyWayStore/app/app.iml","labels":[]}}
+[t=1595873726449] LSP4E to quarkus:
+Content-Length: 40
+
+
+[t=1595873726464] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"3","result":null}
+[t=1595873726474] LSP4E to quarkus:
+Content-Length: 40
+
+
+[t=1595873726484] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"2","result":null}
+[t=1595873726494] LSP4E to quarkus:
+Content-Length: 100
+
+
+[t=1595873726504] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"6","result":{"uri":"E:/Android Projects/MyWayStore/app/app.iml","labels":[]}}
+[t=1595873726514] LSP4E to quarkus:
+Content-Length: 100
+
+
+[t=1595873726524] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"5","result":{"uri":"E:/Android Projects/MyWayStore/app/app.iml","labels":[]}}
+[t=1595874981643] LSP4E to quarkus:
+Content-Length: 2549
+
+
+[t=1595874981749] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java","languageId":"quarkus","version":1,"text":"package com.algamil.souq.views.activities;\n\nimport android.os.Bundle;\nimport android.view.View;\nimport android.view.Menu;\n\nimport com.algamil.souq.R;\nimport com.google.android.material.floatingactionbutton.FloatingActionButton;\nimport com.google.android.material.snackbar.Snackbar;\nimport com.google.android.material.navigation.NavigationView;\n\nimport androidx.navigation.NavController;\nimport androidx.navigation.Navigation;\nimport androidx.navigation.ui.AppBarConfiguration;\nimport androidx.navigation.ui.NavigationUI;\nimport androidx.drawerlayout.widget.DrawerLayout;\nimport androidx.appcompat.app.AppCompatActivity;\nimport androidx.appcompat.widget.Toolbar;\n\npublic class CustomerActivity extends AppCompatActivity {\n\n    private AppBarConfiguration mAppBarConfiguration;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_customer);\n        Toolbar toolbar \u003d findViewById(R.id.toolbar);\n        setSupportActionBar(toolbar);\n        DrawerLayout drawer \u003d findViewById(R.id.drawer_layout);\n        NavigationView navigationView \u003d findViewById(R.id.nav_view);\n        navigationView.setItemIconTintList(null);\n        mAppBarConfiguration \u003d new AppBarConfiguration.Builder(\n                R.id.nav_home, R.id.nav_category, R.id.nav_contact_us)\n                .setDrawerLayout(drawer)\n                .build();\n        NavController navController \u003d Navigation.findNavController(this, R.id.nav_host_fragment);\n        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);\n        NavigationUI.setupWithNavController(navigationView, navController);\n    }\n\n    @Override\n    public boolean onCreateOptionsMenu(Menu menu) {\n        // Inflate the menu; this adds items to the action bar if it is present.\n        getMenuInflater().inflate(R.menu.customer, menu);\n        return true;\n    }\n\n    @Override\n    public boolean onSupportNavigateUp() {\n        NavController navController \u003d Navigation.findNavController(this, R.id.nav_host_fragment);\n        return NavigationUI.navigateUp(navController, mAppBarConfiguration)\n                || super.onSupportNavigateUp();\n    }\n}\n"}}}
+[t=1595874981762] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"7","method":"microprofile/java/projectLabels","params":{"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java","types":["org.eclipse.microprofile.metrics.annotation.Metric","org.eclipse.microprofile.metrics.annotation.Counted","org.eclipse.microprofile.metrics.annotation.Gauge","org.eclipse.microprofile.metrics.annotation.ConcurrentGauge","org.eclipse.microprofile.metrics.annotation.Metered","org.eclipse.microprofile.metrics.annotation.Timed","org.eclipse.microprofile.metrics.annotation.SimplyTimed","org.eclipse.microprofile.metrics.annotation.RegistryType","org.eclipse.microprofile.openapi.annotations.Operation","org.eclipse.microprofile.openapi.annotations.media.Content","org.eclipse.microprofile.openapi.annotations.media.Schema","org.eclipse.microprofile.openapi.annotations.parameters.Parameters","org.eclipse.microprofile.openapi.annotations.parameters.Parameter","org.eclipse.microprofile.openapi.annotations.responses.APIResponses","org.eclipse.microprofile.openapi.annotations.responses.APIResponse","org.eclipse.microprofile.faulttolerance.Timeout","org.eclipse.microprofile.faulttolerance.Retry","org.eclipse.microprofile.faulttolerance.Fallback","org.eclipse.microprofile.faulttolerance.CircuitBreaker","org.eclipse.microprofile.faulttolerance.Bulkhead","javax.ws.rs.GET","io.quarkus.test.junit.QuarkusTest","io.quarkus.test.junit.SubstrateTest"]}}
+[t=1595874981781] LSP4E to quarkus:
+Content-Length: 100
+
+
+[t=1595874981794] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"7","result":{"uri":"E:/Android Projects/MyWayStore/app/app.iml","labels":[]}}
+[t=1595875015217] LSP4E to quarkus:
+Content-Length: 343
+
+
+[t=1595875015251] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":2,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":46,"character":5},"end":{"line":46,"character":5}},"rangeLength":0,"text":"\n    "}]}}
+[t=1595875015275] LSP4E to quarkus:
+Content-Length: 337
+
+
+[t=1595875015296] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":3,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":47,"character":4},"end":{"line":47,"character":4}},"rangeLength":0,"text":""}]}}
+[t=1595875027741] LSP4E to quarkus:
+Content-Length: 337
+
+
+[t=1595875027757] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":4,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":47,"character":4},"end":{"line":49,"character":4}},"rangeLength":6,"text":""}]}}
+[t=1595875027770] LSP4E to quarkus:
+Content-Length: 472
+
+
+[t=1595875027783] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":5,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":47,"character":4},"end":{"line":47,"character":4}},"rangeLength":0,"text":"@Override\n    public boolean onOptionsItemSelected(@NonNull MenuItem item) {\n        return super.onOptionsItemSelected(item);\n    }"}]}}
+[t=1595875027801] LSP4E to quarkus:
+Content-Length: 359
+
+
+[t=1595875027815] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":6,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":48,"character":42},"end":{"line":48,"character":42}},"rangeLength":0,"text":"androidx.annotation."}]}}
+[t=1595875027833] LSP4E to quarkus:
+Content-Length: 372
+
+
+[t=1595875027847] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":7,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":11,"character":0},"end":{"line":11,"character":0}},"rangeLength":0,"text":"import androidx.annotation.NonNull;"}]}}
+[t=1595875027863] LSP4E to quarkus:
+Content-Length: 340
+
+
+[t=1595875027880] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":8,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":48,"character":42},"end":{"line":48,"character":62}},"rangeLength":20,"text":""}]}}
+[t=1595875027895] LSP4E to quarkus:
+Content-Length: 352
+
+
+[t=1595875027914] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":9,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":48,"character":50},"end":{"line":48,"character":50}},"rangeLength":0,"text":"android.view."}]}}
+[t=1595875027934] LSP4E to quarkus:
+Content-Length: 365
+
+
+[t=1595875027953] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":10,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":3,"character":0},"end":{"line":3,"character":0}},"rangeLength":0,"text":"import android.view.MenuItem;"}]}}
+[t=1595875027969] LSP4E to quarkus:
+Content-Length: 341
+
+
+[t=1595875027986] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":11,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":48,"character":50},"end":{"line":48,"character":63}},"rangeLength":13,"text":""}]}}
+[t=1595875028005] LSP4E to quarkus:
+Content-Length: 340
+
+
+[t=1595875028023] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":12,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":3,"character":29},"end":{"line":3,"character":29}},"rangeLength":0,"text":"\n"}]}}
+[t=1595875028044] LSP4E to quarkus:
+Content-Length: 346
+
+
+[t=1595875028062] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":15,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":53,"character":5},"end":{"line":53,"character":5}},"rangeLength":0,"text":"\n\n    "}]}}
+[t=1595875028080] LSP4E to quarkus:
+Content-Length: 340
+
+
+[t=1595875028103] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":14,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":49,"character":0},"end":{"line":49,"character":0}},"rangeLength":0,"text":"\n"}]}}
+[t=1595875028124] LSP4E to quarkus:
+Content-Length: 342
+
+
+[t=1595875028162] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":13,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":12,"character":35},"end":{"line":12,"character":35}},"rangeLength":0,"text":"\n"}]}}
+[t=1595875033435] LSP4E to quarkus:
+Content-Length: 142
+
+
+[t=1595875033447] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"microprofile/propertiesChanged","params":{"type":[1],"projectURIs":["E:/Android Projects/MyWayStore/app/app.iml"]}}
+[t=1595875095752] LSP4E to quarkus:
+Content-Length: 340
+
+
+[t=1595875095768] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":16,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":50,"character":1},"end":{"line":54,"character":0}},"rangeLength":136,"text":""}]}}
+[t=1595875096273] LSP4E to quarkus:
+Content-Length: 338
+
+
+[t=1595875096297] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":17,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":50,"character":0},"end":{"line":50,"character":1}},"rangeLength":1,"text":""}]}}
+[t=1595875096322] LSP4E to quarkus:
+Content-Length: 342
+
+
+[t=1595875096343] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":18,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":49,"character":0},"end":{"line":50,"character":0}},"rangeLength":1,"text":"    "}]}}
+[t=1595875097739] LSP4E to quarkus:
+Content-Length: 142
+
+
+[t=1595875097752] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"microprofile/propertiesChanged","params":{"type":[1],"projectURIs":["E:/Android Projects/MyWayStore/app/app.iml"]}}
+[t=1595875109443] LSP4E to quarkus:
+Content-Length: 338
+
+
+[t=1595875109458] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":19,"uri":"file:///E:/Android%20Projects/MyWayStore/app/src/main/java/com/algamil/souq/views/activities/CustomerActivity.java"},"contentChanges":[{"range":{"start":{"line":49,"character":0},"end":{"line":49,"character":4}},"rangeLength":4,"text":""}]}}
+[t=1595875109561] LSP4E to quarkus:
+Content-Length: 142
+
+
+[t=1595875109574] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"microprofile/propertiesChanged","params":{"type":[1],"projectURIs":["E:/Android Projects/MyWayStore/app/app.iml"]}}
+[t=1595881232076] LSP4E to quarkus:
+Content-Length: 1397
+
+
+[t=1595881232313] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"1","method":"initialize","params":{"processId":7764,"rootPath":"/C:/Users/gemy/AndroidStudioProjects/MyWayStore/app/","rootUri":"file:/C:/Users/gemy/AndroidStudioProjects/MyWayStore/app/","capabilities":{"workspace":{"applyEdit":true,"workspaceEdit":{"documentChanges":true,"resourceOperations":["create","delete","rename"],"failureHandling":"undo"},"symbol":{"dynamicRegistration":true},"executeCommand":{"dynamicRegistration":true},"workspaceFolders":true},"textDocument":{"synchronization":{"willSave":true,"willSaveWaitUntil":true,"didSave":true},"completion":{"completionItem":{"snippetSupport":true,"documentationFormat":["markdown","plaintext"]}},"hover":{"contentFormat":["markdown","plaintext"]},"signatureHelp":{},"references":{},"documentHighlight":{},"documentSymbol":{"symbolKind":{"valueSet":[18,17,5,14,9,10,22,24,8,1,12,11,20,6,2,3,21,16,19,25,4,7,15,23,26,13]},"hierarchicalDocumentSymbolSupport":true},"formatting":{"dynamicRegistration":true},"rangeFormatting":{},"definition":{"linkSupport":true},"typeDefinition":{"linkSupport":true},"codeAction":{"codeActionLiteralSupport":{"codeActionKind":{"valueSet":["quickfix","refactor","refactor.extract","refactor.inline","refactor.rewrite","source","source.organizeImports"]}},"dynamicRegistration":true},"codeLens":{},"documentLink":{},"colorProvider":{},"rename":{}}},"clientName":"IntelliJ","trace":"off"}}
+[t=1595881235454] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"1","result":{"capabilities":{"textDocumentSync":2,"hoverProvider":true,"completionProvider":{"resolveProvider":false,"triggerCharacters":[".","%","\u003d","@"]},"definitionProvider":true,"documentSymbolProvider":true,"codeLensProvider":{"resolveProvider":false},"documentFormattingProvider":false,"documentRangeFormattingProvider":true}}}
+[t=1595881235487] LSP4E to quarkus:
+Content-Length: 52
+
+
+[t=1595881235505] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"initialized","params":{}}
+[t=1595881235520] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"1","method":"client/registerCapability","params":{"registrations":[{"id":"486adb6e-a5d8-4bbd-860d-b9a8e8f46f69","method":"textDocument/codeAction"}]}}
+[t=1595881235535] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"2","method":"client/registerCapability","params":{"registrations":[{"id":"0c713f13-51e6-46ef-941b-6d4bbb964c4c","method":"textDocument/formatting"}]}}
+[t=1595881235546] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"3","method":"client/registerCapability","params":{"registrations":[{"id":"026b5ef2-46b7-4786-b945-2ee179fa287e","method":"textDocument/rangeFormatting"}]}}
+[t=1595881238789] LSP4E to quarkus:
+Content-Length: 2555
+
+
+[t=1595881238818] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///C:/Users/gemy/AndroidStudioProjects/MyWayStore/app/src/main/java/com/algamil/mywaystore/ui/fragments/AboutFragment.java","languageId":"quarkus","version":1,"text":"package com.algamil.mywaystore.ui.fragments;\n\nimport android.content.Intent;\nimport android.net.Uri;\nimport android.os.Bundle;\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.ViewGroup;\n\nimport androidx.fragment.app.Fragment;\n\nimport com.algamil.mywaystore.R;\n\nimport butterknife.ButterKnife;\nimport butterknife.OnClick;\n\npublic class AboutFragment extends Fragment {\n\n\n    @Override\n    public void onCreate ( Bundle savedInstanceState ) {\n        super.onCreate ( savedInstanceState );\n    }\n\n    @Override\n    public View onCreateView ( LayoutInflater inflater , ViewGroup container ,\n                               Bundle savedInstanceState ) {\n        View view \u003d inflater.inflate ( R.layout.fragment_about , container , false );\n        ButterKnife.bind(this , view);\n        return view;\n    }\n\n    @OnClick ( { R.id.facebook_btn , R.id.whatsapp_btn , R.id.prog_fab_facebook , R.id.prog_fab_whats , R.id.prog_fab_linked , R.id.prog_fab_twitter , R.id.prog_fab_youtube } )\n    public void onClick ( View view ) {\n        switch ( view.getId ( ) ) {\n            case R.id.facebook_btn:\n                openUrl ( \"https://www.facebook.com/groups/212937796393461\" );\n                break;\n            case R.id.whatsapp_btn:\n                openUrl ( \"https://chat.whatsapp.com/BplyojHC02KHKkFYtKR9uk\" );\n                break;\n            case R.id.prog_fab_facebook:\n                openUrl ( \"https://www.facebook.com/eng.ahmed.5811877\" );\n                break;\n            case R.id.prog_fab_whats:\n                break;\n            case R.id.prog_fab_linked:\n                openUrl ( \"https://www.linkedin.com/in/ahmed-algamil-861b1a187\" );\n                break;\n            case R.id.prog_fab_twitter:\n                openUrl ( \"https://twitter.com/ahmedalgamil231?s\u003d08 \" );\n                break;\n            case R.id.prog_fab_youtube:\n                openUrl ( \"https://www.youtube.com/channel/UC7lZXUGd1ODOHtoRzu48Tfg\" );\n                break;\n        }\n    }\n\n    public void openUrl ( String Url ) {\n        Uri uri \u003d Uri.parse ( Url );\n        Intent intent \u003d new Intent ( Intent.ACTION_VIEW , uri );\n        startActivity ( intent );\n    }\n\n}\n"}}}
+[t=1595881238846] LSP4E to quarkus:
+Content-Length: 40
+
+
+[t=1595881238913] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"4","method":"microprofile/java/projectLabels","params":{"uri":"file:///C:/Users/gemy/AndroidStudioProjects/MyWayStore/app/src/main/java/com/algamil/mywaystore/ui/fragments/AboutFragment.java","types":["org.eclipse.microprofile.metrics.annotation.Metric","org.eclipse.microprofile.metrics.annotation.Counted","org.eclipse.microprofile.metrics.annotation.Gauge","org.eclipse.microprofile.metrics.annotation.ConcurrentGauge","org.eclipse.microprofile.metrics.annotation.Metered","org.eclipse.microprofile.metrics.annotation.Timed","org.eclipse.microprofile.metrics.annotation.SimplyTimed","org.eclipse.microprofile.metrics.annotation.RegistryType","org.eclipse.microprofile.openapi.annotations.Operation","org.eclipse.microprofile.openapi.annotations.media.Content","org.eclipse.microprofile.openapi.annotations.media.Schema","org.eclipse.microprofile.openapi.annotations.parameters.Parameters","org.eclipse.microprofile.openapi.annotations.parameters.Parameter","org.eclipse.microprofile.openapi.annotations.responses.APIResponses","org.eclipse.microprofile.openapi.annotations.responses.APIResponse","org.eclipse.microprofile.faulttolerance.Timeout","org.eclipse.microprofile.faulttolerance.Retry","org.eclipse.microprofile.faulttolerance.Fallback","org.eclipse.microprofile.faulttolerance.CircuitBreaker","org.eclipse.microprofile.faulttolerance.Bulkhead","javax.ws.rs.GET","io.quarkus.test.junit.QuarkusTest","io.quarkus.test.junit.SubstrateTest"]}}
+[t=1595881238920] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"2","result":null}
+[t=1595881238938] LSP4E to quarkus:
+Content-Length: 40
+
+
+[t=1595881238965] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"1","result":null}
+[t=1595881238982] LSP4E to quarkus:
+Content-Length: 116
+
+
+[t=1595881238998] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"4","result":{"uri":"C:/Users/gemy/AndroidStudioProjects/MyWayStore/app/app.iml","labels":[]}}
+[t=1595881239018] LSP4E to quarkus:
+Content-Length: 40
+
+
+[t=1595881239035] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"3","result":null}
+[t=1595881836339] LSP4E to quarkus:
+Content-Length: 263
+
+
+[t=1595881836503] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"2","method":"textDocument/definition","params":{"textDocument":{"uri":"file:///C:/Users/gemy/AndroidStudioProjects/MyWayStore/app/src/main/java/com/algamil/mywaystore/ui/fragments/AboutFragment.java"},"position":{"line":46,"character":36}}}
+[t=1595881836522] LSP4E to quarkus:
+Content-Length: 263
+
+
+[t=1595881836527] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"2","result":null}
+[t=1595881836538] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"4","method":"textDocument/definition","params":{"textDocument":{"uri":"file:///C:/Users/gemy/AndroidStudioProjects/MyWayStore/app/src/main/java/com/algamil/mywaystore/ui/fragments/AboutFragment.java"},"position":{"line":46,"character":37}}}
+[t=1595881836549] LSP4E to quarkus:
+Content-Length: 263
+
+
+[t=1595881836550] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"4","result":null}
+[t=1595881836569] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"3","method":"textDocument/definition","params":{"textDocument":{"uri":"file:///C:/Users/gemy/AndroidStudioProjects/MyWayStore/app/src/main/java/com/algamil/mywaystore/ui/fragments/AboutFragment.java"},"position":{"line":46,"character":36}}}
+[t=1595881836586] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"3","result":null}
+[t=1595881836585] LSP4E to quarkus:
+Content-Length: 263
+
+
+[t=1595881836586] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"5","method":"textDocument/definition","params":{"textDocument":{"uri":"file:///C:/Users/gemy/AndroidStudioProjects/MyWayStore/app/src/main/java/com/algamil/mywaystore/ui/fragments/AboutFragment.java"},"position":{"line":46,"character":37}}}
+[t=1595881836658] quarkus to LSP4E:
+{"jsonrpc":"2.0","id":"5","result":null}
+[t=1595881856508] LSP4E to quarkus:
+Content-Length: 353
+
+
+[t=1595881856529] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":2,"uri":"file:///C:/Users/gemy/AndroidStudioProjects/MyWayStore/app/src/main/java/com/algamil/mywaystore/ui/fragments/AboutFragment.java"},"contentChanges":[{"range":{"start":{"line":53,"character":16},"end":{"line":53,"character":87}},"rangeLength":71,"text":""}]}}
+[t=1595881857632] LSP4E to quarkus:
+Content-Length: 425
+
+
+[t=1595881857645] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":3,"uri":"file:///C:/Users/gemy/AndroidStudioProjects/MyWayStore/app/src/main/java/com/algamil/mywaystore/ui/fragments/AboutFragment.java"},"contentChanges":[{"range":{"start":{"line":53,"character":16},"end":{"line":53,"character":16}},"rangeLength":0,"text":"openUrl ( \"https://www.youtube.com/channel/UC7lZXUGd1ODOHtoRzu48Tfg\" );"}]}}
+[t=1595881924905] LSP4E to quarkus:
+Content-Length: 366
+
+
+[t=1595881924925] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":4,"uri":"file:///C:/Users/gemy/AndroidStudioProjects/MyWayStore/app/src/main/java/com/algamil/mywaystore/ui/fragments/AboutFragment.java"},"contentChanges":[{"range":{"start":{"line":44,"character":37},"end":{"line":44,"character":37}},"rangeLength":0,"text":"\n            "}]}}
+[t=1595881924938] LSP4E to quarkus:
+Content-Length: 356
+
+
+[t=1595881924950] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":5,"uri":"file:///C:/Users/gemy/AndroidStudioProjects/MyWayStore/app/src/main/java/com/algamil/mywaystore/ui/fragments/AboutFragment.java"},"contentChanges":[{"range":{"start":{"line":45,"character":12},"end":{"line":45,"character":12}},"rangeLength":0,"text":"    "}]}}
+[t=1595881925074] LSP4E to quarkus:
+Content-Length: 395
+
+
+[t=1595881925120] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"version":6,"uri":"file:///C:/Users/gemy/AndroidStudioProjects/MyWayStore/app/src/main/java/com/algamil/mywaystore/ui/fragments/AboutFragment.java"},"contentChanges":[{"range":{"start":{"line":45,"character":16},"end":{"line":45,"character":16}},"rangeLength":0,"text":"openUrl ( \"https://wa.me/201277823947\" );"}]}}
+[t=1595881937307] LSP4E to quarkus:
+Content-Length: 158
+
+
+[t=1595881937319] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"microprofile/propertiesChanged","params":{"type":[1],"projectURIs":["C:/Users/gemy/AndroidStudioProjects/MyWayStore/app/app.iml"]}}
+[t=1595882925708] LSP4E to quarkus:
+Content-Length: 60
+
+
+[t=1595882925770] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"6","method":"shutdown","params":null}
+[t=1595882925793] LSP4E to quarkus:
+Content-Length: 47
+
+
+[t=1595882925910] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"exit","params":null}
+[t=1595882925958] LSP4E to quarkus:
+Content-Length: 60
+
+
+[t=1595882926026] LSP4E to quarkus:
+{"jsonrpc":"2.0","id":"7","method":"shutdown","params":null}
+[t=1595882926044] LSP4E to quarkus:
+Content-Length: 47
+
+
+[t=1595882926067] LSP4E to quarkus:
+{"jsonrpc":"2.0","method":"exit","params":null}
